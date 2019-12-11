@@ -1,18 +1,28 @@
-require 'bike'
+require_relative 'bike'
 
-class DockingStation
-  # def initialize
-  #   # @bike = 1
-  # end 
+class DockingStation 
+  attr_reader :docked
+  
+  def initialize(capacity = 20)
+    @capacity = capacity
+    @docked = []
+  end 
   
   def release_bike
-    Bike.new 
-  end 
+    # puts "Release One Bike!"
+    # Bike.new
+    # @number -= 1
+    fail 'No bikes available' if @docked.empty?
+    @docked.pop
+  end
+
+  def dock(bike)
+    fail 'Docking station full' if @docked.length >= 20
+    @docked << bike
+  end
+
 end 
 
-# docking_station = DockingStation.new 
-# puts "docking station"
-# p docking_station
-
-# puts "release bike"
-# p docking_station.release_bike
+# lol = DockingStation.new
+# lol.release_bike
+# lol.dock(3)
