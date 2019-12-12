@@ -17,10 +17,20 @@ class DockingStation
   end
 
   def dock(bike)
-    fail 'Docking station full' if @docked.length >= 20
+    fail 'Docking station full' if @docked.full?
     @docked << bike
   end
 
+  private
+
+  def full?
+    docked.count >= 20
+  end
+
+  def empty?
+    docked.count == 0
+  end
+  
 end 
 
 # lol = DockingStation.new

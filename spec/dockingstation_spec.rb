@@ -5,14 +5,6 @@ describe DockingStation do
   it { is_expected.to respond_to(:release_bike)} 
   end 
 
-  # describe 'responds to working' do
-  #   it {expect(DockingStation.new.release_bike).to respond_to(:working?)} 
-  # end 
-
-  # describe 'returns true' do
-  #   it {expect(DockingStation.new.release_bike.working?).to eq true} 
-  # end
-
   it 'releases working bikes' do
     bike = Bike.new # putting in a new bike into the dock!!!!!!!!!!!
     subject.dock(bike)
