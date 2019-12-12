@@ -31,9 +31,31 @@ describe DockingStation do
 
   describe '# dock' do
     it 'raises an error when full' do
-      20.times {subject.dock(Bike.new)}
+      subject.capacity.times {subject.dock(Bike.new)}
       expect { subject.dock Bike.new }.to raise_error 'Docking station full'
     end
   end
 
+# NAMESPACE OPERATOR , when calling a constant in rspec, qualify the constant 
+# with the class in which it is is declared. DockingStation::DEFAULT_CAPACITY
+
+describe "initialization" do
+  subject { DockingStation.new }
+  let(:bike) {Bike.new}
+    it "defaults capacity" do
+     described_class::DEFAULT_CAPACITY.times do
+     subject.dock(bike) 
+     end
+  expect{ subject.dock(bike) }.to raise_error "Docking station full"
+  end
+end
+
+# Above has the default capacity instead. Below is the previous test.  
+# describe "initialize" do
+#   it "Capacity can change" do
+#     station = DockingStation.new(30)
+#     30.times { station.dock Bike.new }
+#     expect{ station.dock Bike.new }.to raise_error "No room avaliable"
+#   end
+# end
 end
